@@ -60,7 +60,6 @@ configure context.xml
 update dockerfile
 build backend image
 docker run -d -p 8080:8080 backend:latest
-
 step3: Deploy frontend container
 configure index.html (update backend url)
 build frontend image
