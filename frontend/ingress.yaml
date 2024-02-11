@@ -12,7 +12,7 @@ spec:
       port:
         number: 80
   rules:
-    - host: "af4e1a501b19b430e96d6535547f8160-07dbacc9c08f1d87.elb.eu-central-1.amazonaws.com"
+    - host: "ab16c4c312ce3499d8ea2d622d87f818-c98fe7ea71158e78.elb.eu-central-1.amazonaws.com"
       http:
         paths:
         - path: /frontend
