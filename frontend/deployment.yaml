@@ -34,7 +34,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: student
+  name: student-svc
 spec:
   ports:
     - port: 80
