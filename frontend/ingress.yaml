@@ -15,7 +15,7 @@ spec:
     - host: "af4e1a501b19b430e96d6535547f8160-07dbacc9c08f1d87.elb.eu-central-1.amazonaws.com"
       http:
         paths:
-        - path: /student
+        - path: /html
           pathType: Prefix
           backend:
             service:
