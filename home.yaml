@@ -2,31 +2,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-three-tier
+  name: mobile-deployment
   labels:
-    app: tejas-app
+    app: mobile
 spec:
   template:
     metadata:
       labels:
-        app: tejas-app
+        app: mobile
     spec:
       containers:
-        - name: app-container
-          image: tejaspatil19/3tier-frontend-kubernetes:latest
+        - name: mobile-c
+          image: tejaspatil19/mobile:latest
           ports:
             - containerPort: 80
-          resources:
-            requests:
-              cpu: 200m
-              memory: 100Mi
-            limits:
-              cpu: 400m
-              memory: 200Mi
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: tejas-app
+      app: mobile
   strategy:
     type: RollingUpdate
 ...
@@ -34,25 +27,25 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-svc
+  name: mobile-svc
 spec:
   ports:
     - port: 80
       targetPort: 80
       protocol: TCP
   selector:
-    app: tejas-app
+    app: mobile
 ...
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: front-hpa
+  name: new-hpa
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: frontend-three-tier
+    name: mobile-deployment
   minReplicas: 1
   maxReplicas: 10
   metrics:
