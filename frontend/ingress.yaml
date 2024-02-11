@@ -12,7 +12,7 @@ spec:
       port:
         number: 8080
   rules:
-    - host: "NODEIP:NODEPORT"
+    - host: "ab16c4c312ce3499d8ea2d622d87f818-c98fe7ea71158e78.elb.eu-central-1.amazonaws.com"
       http:
         paths:
         - path: /student
