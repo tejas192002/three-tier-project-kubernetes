@@ -1,10 +1,8 @@
 # INSTRUCTION ARG1 ARG2 ....
 FROM centos:7
-LABEL auther=tejaspatil
 RUN yum install httpd -y
-COPY index.html /var/www/html/index.html
+RUN mkdir -p /var/www/html/backend
+COPY index.html /var/www/html/backend/index.html
+COPY index1.html /var/www/html/
 EXPOSE 80
-# CMD httpd -DEFOREGROUND
-# CMD ["httpd", "-DFORGROUND"]
-# ENTRYPOINT httpd -DFOREGROUND
 ENTRYPOINT ["httpd","-DFOREGROUND"]
