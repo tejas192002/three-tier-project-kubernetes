@@ -1,0 +1,65 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: studentapp
+  labels:
+    app: tejas-app
+spec:
+  template:
+    metadata:
+      labels:
+        app: tejas-app
+    spec:
+      containers:
+        - name: app-container
+          image: tejaspatil19/3tier-frontend-kubernetes:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 200m
+              memory: 100Mi
+            limits:
+              cpu: 400m
+              memory: 200Mi
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tejas-app
+  strategy:
+    type: RollingUpdate
+...
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-svc
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: tejas-app
+...
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: my-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: studentapp
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 30
+...
