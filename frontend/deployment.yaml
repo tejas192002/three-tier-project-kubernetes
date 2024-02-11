@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: studentapp
+  name: frontend-three-tier
   labels:
     app: tejas-app
 spec:
@@ -52,7 +52,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: studentapp
+    name: frontend-three-tier
   minReplicas: 1
   maxReplicas: 10
   metrics:
