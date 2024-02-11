@@ -34,12 +34,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: threetier-svc
+  name: backend-service
+  labels:
+    app: backend
 spec:
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: 8080
       protocol: TCP
+  type: NodePort
   selector:
     app: tej-app
 ...
