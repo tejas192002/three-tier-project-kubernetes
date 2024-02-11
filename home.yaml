@@ -2,24 +2,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mobile-deployment
+  name: home-deployment
   labels:
-    app: mobile
+    app: home
 spec:
   template:
     metadata:
       labels:
-        app: mobile
+        app: home
     spec:
       containers:
-        - name: mobile-c
-          image: tejaspatil19/mobile:latest
+        - name: home-c
+          image: tejaspatil19/home:latest
           ports:
             - containerPort: 80
   replicas: 2
   selector:
     matchLabels:
-      app: mobile
+      app: home
   strategy:
     type: RollingUpdate
 ...
@@ -27,25 +27,25 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mobile-svc
+  name: home-svc
 spec:
   ports:
     - port: 80
       targetPort: 80
       protocol: TCP
   selector:
-    app: mobile
+    app: home
 ...
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: new-hpa
+  name: home-hpa
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: mobile-deployment
+    name: home-deployment
   minReplicas: 1
   maxReplicas: 10
   metrics:

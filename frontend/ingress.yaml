@@ -8,7 +8,7 @@ spec:
   ingressClassName: nginx
   defaultBackend:
     service:
-      name: mobile-svc
+      name: 
       port:
         number: 80
   rules:
@@ -20,5 +20,12 @@ spec:
           backend:
             service:
               name: frontend-svc
+              port:
+                number: 80
+        - path: /home
+          pathType: Prefix
+          backend:
+            service:
+              name: 
               port:
                 number: 80
